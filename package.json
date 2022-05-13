@@ -13,6 +13,8 @@
   },
   "private": true,
   "dependencies": {
+    "@angular-builders/custom-webpack": "^13.1.0",
+    "@angular-builders/dev-server": "^7.3.1",
     "@angular/common": "~13.2.2",
     "@angular/core": "~13.2.2",
     "@angular/forms": "~13.2.2",
@@ -20,7 +22,11 @@
     "@angular/platform-browser-dynamic": "~13.2.2",
     "@angular/router": "~13.2.2",
     "@ionic/angular": "^6.0.0",
+    "@walletconnect/web3-provider": "^1.7.8",
+    "crypto-browserify": "^3.12.0",
+    "moralis": "^1.7.0",
     "rxjs": "~6.6.0",
+    "stream-browserify": "^3.0.0",
     "tslib": "^2.2.0",
     "zone.js": "~0.11.4"
   },
