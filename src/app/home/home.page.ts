@@ -7,12 +7,11 @@ import Moralis from 'moralis';
   styleUrls: ['home.page.scss'],
 })
 export class HomePage implements OnInit {
-
   user: any;
 
   constructor() {}
 
-  ngOnInit(): void {
+  async ngOnInit() {
     const serverUrl = 'https://giwvxockoygv.usemoralis.com:2053/server';
     const appId = 'fikxyv0hBpFqjNKJMVDNOU8uqUi2m8jxSuN8aypE';
     // const masterKey = '9TY6MjUokXm9pAiLO8vcvu3W4X5P5mXNO0gNvjAD';
@@ -31,12 +30,13 @@ export class HomePage implements OnInit {
     // }
 
     if (!this.user) {
-      
+      Moralis.isMetaMaskInstalled().then((res) => {
+        console.log(res);
+      });
       Moralis.authenticate({
+        signingMessage: 'Login via Digital Dope',
         provider: 'walletconnect',
-        mobileLinks: [
-          'metamask'
-        ],
+        mobileLinks: ['metamask'],
       })
         .then(function (user) {
           console.log('logged in user:', user);
@@ -52,5 +52,4 @@ export class HomePage implements OnInit {
     await Moralis.User.logOut();
     console.log('logged out');
   }
-
 }
