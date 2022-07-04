@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+// import WalletConnectProvider from '@walletconnect/web3-provider';
 import Moralis from 'moralis';
-
+// import {} from '@walletconnect/web3-provider';
 @Component({
   selector: 'app-home',
   templateUrl: 'home.page.html',
@@ -29,23 +30,43 @@ export class HomePage implements OnInit {
     //   this.user = await Moralis.authenticate();
     // }
 
-    if (!this.user) {
-      Moralis.isMetaMaskInstalled().then((res) => {
-        console.log(res);
-      });
-      Moralis.authenticate({
-        signingMessage: 'Login via Digital Dope',
-        provider: 'walletconnect',
-        mobileLinks: ['metamask'],
-      })
-        .then(function (user) {
-          console.log('logged in user:', user);
-          console.log(user.get('ethAddress'));
-        })
-        .catch(function (error) {
-          console.log(error);
-        });
-    }
+    // let providerx='walletconnect'
+    // let web3;
+    // if (providerx == 'walletconnect') {
+    //   const user = await Moralis.Web3.authenticate({ provider: 'walletconnect' });
+    //   web3 = await Moralis.Web3.enableWeb3({ provider: 'walletconnect' });
+    // } else {
+    //   const user = await Moralis.Web3.authenticate();
+    //   web3 = await Moralis.Web3.enableWeb3();
+    // }
+
+    // Moralis.isMetaMaskInstalled().then((res) => {
+    //   console.log(res);
+    // });
+
+    await Moralis.Web3.enableWeb3();
+    await Moralis.Web3.authenticate({
+      provider: 'walletconnect',
+      signingMessage: 'Login via Digital Dope',
+    });
+
+    // const polygonNFTs = await Moralis.Web3API.account.getNFTs({
+    //   chain: 'rinkeby',
+    //   address: '0x6Cc2990cA80e9a067d89dF630968A6aB95d94a0a',
+    // });
+
+    // console.log(polygonNFTs.result[0].metadata);
+
+    // .then(function (user) {
+    //   console.log('logged in user:', user);
+    //   console.log(user.get('ethAddress'));
+    // })
+    // .catch(function (error) {
+    //   console.log(error);
+    // });
+    // await Moralis.Web3.enableWeb3({
+    //   provider: 'walletconnect',
+    // });
   }
 
   async logout() {
